@@ -39,7 +39,7 @@ export default function Home() {
             <button
                 onClick={() => setQuizStarted(true)}
                 className="btn btn-primary"
-                // Disable button if name is empty or whitespace
+    
                 disabled={!name.trim()}
             >
                 Start Quiz

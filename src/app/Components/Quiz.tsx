@@ -4,8 +4,11 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { quiz } from '../Data/Questions';
 import ScoreCard from './ScoreCard';
+import useQuizReducer from '../Data/useQuizReducer'
+
 
 export default function Quiz({ name }:{name:string}) {
+    const { state, addQuestion } = useQuizReducer();
 const [currentQuestionIndex,setCurrentQuestionIndex] = useState(0);
 const [selectedAnswer,setSelectedAnswer] = useState('');
 const [answerChecked,setAnswerChecked] = useState(false);
@@ -16,14 +19,13 @@ const [quizResult,setQuizResult] = useState({
     correctAnswers:0,
     wrongAnswers:0
 });
+const questions = JSON.parse(localStorage.getItem('questions'))
 
-
-const {questions} = quiz;
 const {question,answers,correctAnswer} = questions[currentQuestionIndex];
 
-const onAnswerSelected = (answer:string,idx:any)=>{
+const onAnswerSelected = (answer,idx)=>{
+    setSelectedAnswer(answer)
     setSelectedAnswerIndex(idx);
-    setSelectedAnswer(answer);
     setAnswerChecked(true);
 }
 
@@ -54,6 +56,8 @@ const handleNextQuestion = ()=>{
 }
 
   return (
+
+
     <div className='container mt-5'>
  
     <div>
@@ -93,11 +97,12 @@ const handleNextQuestion = ()=>{
         ) : (
             <ScoreCard
                 quizResult={quizResult}
-                questions={questions}
+                questions={Questions}
                 name={name}
             />
         )}
     </div>
 </div>
+
   )
 }

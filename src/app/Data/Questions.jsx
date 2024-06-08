@@ -1,4 +1,5 @@
 // QuestionSet.js
+'use client'
 export const quiz = {
 	questions: [
 		{
@@ -62,4 +63,52 @@ export const quiz = {
 	
 	],
 };
+// export const quizReducer = (state, action) => {
+	
+// 	console.log('quiz reducer working fine');
+// 	console.log('statePrint',state)
+// 	console.log('actionPayload potta',action.payload)
+// 	console.log('actionTYpe da',action.type)
+// 	switch (action.type) {
+// 	  case 'ADD_QUESTION':
+		
+// 		return {
+// 		  ...state,
+// 		  questions: [...state.questions, action.payload],
+// 		};
+// 	  default:
+// 		return state;
+// 	}
+//   };
+
+
+export const quizReducer = (state, action) => {
+	console.log('quiz reducer working fine');
+	console.log('statePrint', state);
+	console.log('actionPayload potta', action.payload);
+	console.log('actionType da', action.type);
+  
+	switch (action.type) {
+	  case 'ADD_QUESTION':
+	
+		const questionExists = state.questions.some(q =>
+		  q.question.trim().toLowerCase() === action.payload.question.trim().toLowerCase()
+		);
+  
+		if (!questionExists) {
+		  return {
+			...state,
+			questions: [...state.questions, action.payload],
+		  };
+		}
+
+		return state;
+  
+	  default:
+		return state;
+	}
+  };
+  
+  
+  
 

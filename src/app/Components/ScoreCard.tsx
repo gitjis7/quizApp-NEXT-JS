@@ -1,7 +1,7 @@
-// ScoreCard.js
+
 import React from 'react';
 
-const ScoreCard = ({ quizResult, questions, name }:{quizResult:{score:number,correctAnswers:number,wrongAnswers:number},questions:any,name:string}) => {
+const ScoreCard = ({ quizResult, questions, name }:{quizResult:{score:number,correctAnswers:number,wrongAnswers:number},questions:[],name:string}) => {
 	const passPercentage = 60;
 
 	const percentage = (quizResult.score / (questions.length * 5)) * 100;
